@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-extension View { // Horizontal floating
-	func float<Content: View>(_ content: Content, side: Opposable<HorizontalAlignment>) -> some View {
+extension View {
+	func float<Content: View>(_ content: Content, alignment: Opposable<HorizontalAlignment>) -> some View {
 		overlay(
-			content.alignmentGuide(side.content) { $0[side.opposite] },
-			alignment: .init(horizontal: side.content, vertical: .center)
+			content.alignmentGuide(alignment.content) { $0[alignment.opposite] },
+			alignment: .init(horizontal: alignment.content, vertical: .center)
 		)
 	}
 }
 
-extension View { // Vertical floating
+extension View {
 	func float<Content: View>(_ content: Content, alignment: Opposable<VerticalAlignment>) -> some View {
 		overlay(
 			content.alignmentGuide(alignment.content) { $0[alignment.opposite] },
