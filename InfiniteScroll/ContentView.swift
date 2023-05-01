@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-		InfiniteScrollView(content: longList.float(trailing: circle))
+        InfiniteScrollView(content: longList.float(circle, alignment: .trailing))
     }
 
 	var longList: some View {
@@ -34,8 +34,8 @@ struct InfiniteScrollView<Content: View>: UIViewRepresentable {
 	func makeUIView(context: Context) -> InfiniteScrollViewRenderer {
 		let contentWidth = CGFloat(100)
 		let tiledContent = content
-							.float(above: content)
-							.float(below: content)
+            .float(content, alignment: .top)
+            .float(content, alignment: .bottom)
 		let contentController = UIHostingController(rootView: tiledContent)
 		let contentView = contentController.view!
 		contentView.frame.size.height = contentView.intrinsicContentSize.height
